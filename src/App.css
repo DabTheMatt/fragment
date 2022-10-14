@@ -35,15 +35,39 @@ h1 {
   opacity: 0.5;
 }
 
+.textarea {
+
+}
+
 .reader-input {
   border-style: none;
-  width: 70%;
+  width: 100%;
   height: auto;
-  font-size: 1.4vw;
   color: black;
+  text-overflow: ellipsis;
+  font-size: 1.3vw;
+  line-height: 2em;
   font-weight: 300;
+  color: black;
+  opacity: 0.8;
+  font-family: 'Lato', sans-serif;
+
 }
 
 textarea:focus, input:focus{
   outline: none;
 }
+
+.word-colorize {
+  transition: all 5s ease-in-out;
+  transition-delay: 1s;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2em;
+  outline-style: none;
+  border-radius: 5px;
+  color: white;
+  border-style: none;
+  margin: 2px;
+
+}
+
