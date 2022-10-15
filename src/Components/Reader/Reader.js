@@ -47,79 +47,49 @@ export default function Reader() {
         '#36486b',
         '#4040a1',
         '#bc5a45'
-
     ])
 
-    const handleInput = (value) => {
-        setInputText(value);
-        console.log('v', value)
-    }
-    
-    let id = 0;
+    const [text, setText] = useState('All known all white bare white body fixed one yard legs joined like sewn.');
+    const [clockColor, setClickColor] = useState('plain');
 
-    const handleWordClick = (e, index) => {
-        console.log('clik', e.target, index);
-        textArray.forEach((clickedEl) => {
-            clickedEl.clicked = 'word-colorize'
-        })
-    }
-
-    const readToArray = () => {
-        let tempArray = inputText.split(' ');
-        console.log('ta', tempArray);
-        let objArray = [];
-        let temp2Array = [];
-        let outerArray = [];
-        let internalArray = [];
-        let uniquArray = [...new Set(tempArray)];
-        console.log('uniq', uniquArray);
-        let uniqueObjArray = [];
-        let wId = 1;
-
-        uniquArray.forEach((word) => {
-            uniqueObjArray.push({word: word, colorIndex: wordColors[wId]})
-            wId += 1;
-        })
-        tempArray.forEach((tWord) => {
-            
-            uniqueObjArray.forEach((word) => {
-                if (word.word === tWord) {
-                    internalArray.push({word: word.word, color: word.colorIndex})
-                };
-                console.log('iiiaaa', internalArray)
+    useEffect(()=>{
+        let textToArray = text.split(' ');
+        let tempArray = [];
+        textToArray.forEach((word, index) => {
+            tempArray.push(word = {
+                id: index,
+                word: word,
+                clicked: ''
             })
-            
-          
         })
-        console.log('uoA', uniqueObjArray);
-        outerArray.push(...internalArray);
-console.log('ia', internalArray);
-console.log('oa', outerArray);
-        
+        console.log('tta', textToArray);
+        console.log('ta', tempArray)
+        setTextArray([...tempArray]);
+    },[])
 
-        setTextArray(outerArray);
-        console.log('tta', textArray )
-        console.log('t2', temp2Array)
+    const handleWordClick = (e, id, eword) => {
+        console.log('click', e.target, id);
+        setClickColor('colored');
+        textArray.forEach((word) => {
+            if(word.word === eword) {
+                console.log('tar', typeof word.word)
+                word.clicked = 'col'
+            } else if (word.id !== id) {
+                word.clicked = ''
+            }
+        })
+        setTextArray([...textArray])
     }
-
-
 
     return (
       <div className="fragment-wrapper">
-        <h1 onClick={readToArray}>Małe kobietki</h1>
+        <h1>Ping</h1>
         <div className="fragment">
-        {textArray.map((wordObj, index) => {
-            if(wordObj.clicked === 'word-colorize'){
+            {textArray.map((word) => {
                 return (
-                    <button onClick={(e)=>handleWordClick(e, index)} className={`${wordObj.clicked}`} style={{background: wordObj.color}}>{wordObj.word} </button>
+                    <span key={word.id} className={word.clicked} onClick={(e) => handleWordClick(e, word.id, word.word)}>{word.word} </span>
                 )
-            } else {
-                return (
-                    <button onClick={(e)=>handleWordClick(e, index)} className={`${wordObj.clicked}`} style={{background: wordObj.color}}>{wordObj.word} </button>
-                )
-            }
-        })}
-        <textarea rows="15" cols="140" className="reader-input" autoFocus onChange={(e) => handleInput(e.target.value)} value={inputText}></textarea>
+            })}
         </div>
         
         
