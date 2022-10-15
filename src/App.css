@@ -59,15 +59,45 @@ textarea:focus, input:focus{
 }
 
 .word-colorize {
-  transition: all 5s ease-in-out;
-  transition-delay: 1s;
+  transition: all .3s ease-in-out;
   font-family: 'Lato', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.2vw;
   outline-style: none;
   border-radius: 5px;
   color: white;
   border-style: none;
-  margin: 2px;
-
+  margin: -3px;
+  color: red;
+  font-weight: 300;
+  z-index: 10;
 }
 
+.word-plain {
+  transition: all .3s ease-in-out;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2vw;
+  outline-style: none;
+  border-radius: 5px;
+  color: black;
+  border-style: none;
+  margin: -3px;
+  font-weight: 300;
+  z-index: 9;
+  background: transparent;
+}
+
+.col {
+  background: red;
+  border-radius: 10px;
+}
+
+.stats {
+  font-family: 'Playfair Display', serif;
+  font-weight: 200;
+  margin: 60px;
+  font-size: 1.1vw;
+}
+
+.transparent-7 {
+  opacity: .5;
+}

@@ -49,8 +49,11 @@ export default function Reader() {
         '#bc5a45'
     ])
 
-    const [text, setText] = useState('All known all white bare white body fixed one yard legs joined like sewn.');
+    const [text, setText] = useState('All known all white bare white body fixed one yard legs joined like sewn. Light heat white floor one square yard never seen. White walls one yard by two white ceiling one square yard never seen. Bare white body fixed only the eyes only just. Traces blurs light grey almost white on white. Hands hanging palms front white feet heels together right angle. Light heat white planes shining white bare white body fixed ping fixed elsewhere. Traces blurs signs no meaning light grey almost white. Bare white body fixed white on white invisible. Only the eyes only just light blue almost white. Head haught eyes light blue almost white silence within. Brief murmurs only just almost never all known. Traces blurs signs no meaning light grey almost white. Legs joined like sewn heels together right angle. ');
     const [clockColor, setClickColor] = useState('plain');
+    const [textWordCount, setTextWordCount] = useState(0);
+    const [characters, setCharacters] = useState(0);
+    const [selectedWords, setSelectedWords] = useState(0);
 
     useEffect(()=>{
         let textToArray = text.split(' ');
@@ -59,25 +62,30 @@ export default function Reader() {
             tempArray.push(word = {
                 id: index,
                 word: word,
-                clicked: ''
+                clicked: 'word-plain'
             })
         })
         console.log('tta', textToArray);
         console.log('ta', tempArray)
         setTextArray([...tempArray]);
+        setTextWordCount(tempArray.length)
+        setCharacters(text.length);
     },[])
 
     const handleWordClick = (e, id, eword) => {
         console.log('click', e.target, id);
         setClickColor('colored');
+        let selectedCount = 0;
         textArray.forEach((word) => {
             if(word.word === eword) {
                 console.log('tar', typeof word.word)
-                word.clicked = 'col'
+                word.clicked = 'word-colorize'
+                selectedCount += 1;
             } else if (word.id !== id) {
-                word.clicked = ''
+                word.clicked = 'word-plain'
             }
         })
+        setSelectedWords(selectedCount);
         setTextArray([...textArray])
     }
 
@@ -87,9 +95,12 @@ export default function Reader() {
         <div className="fragment">
             {textArray.map((word) => {
                 return (
-                    <span key={word.id} className={word.clicked} onClick={(e) => handleWordClick(e, word.id, word.word)}>{word.word} </span>
+                    <button key={word.id} className={word.clicked} onClick={(e) => handleWordClick(e, word.id, word.word)}>{word.word} </button>
                 )
             })}
+        </div>
+        <div >
+            <p className="stats"><span className="transparent-7">words:</span> {textWordCount}<span className="transparent-7">, characters: </span>{characters}<span className="transparent-7">, occurances: </span>{selectedWords}</p>
         </div>
         
         
