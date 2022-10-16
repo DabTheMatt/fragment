@@ -100,7 +100,7 @@ export default function Reader() {
             })}
         </div>
         <div >
-            <p className="stats"><span className="transparent-7">words:</span> {textWordCount}<span className="transparent-7">, characters: </span>{characters}<span className="transparent-7">, occurances: </span>{selectedWords}</p>
+            <p className="stats"><span className="transparent-5">words:</span> {textWordCount}<span className="transparent-7">, characters: </span>{characters}<span className="transparent-7">, occurances: </span>{selectedWords}</p>
         </div>
         
         
